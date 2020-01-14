@@ -9,34 +9,6 @@ soup = BeautifulSoup(response, 'html.parser')
 
 contents = soup.select('div.story_area > p.con_tx')
 # print(contents)
-audiences = soup.select('div.step9_cont > p.count')
-
-genres = soup.select('dl.info_spec > dd:nth-child(2) > p')
-temp_genres = genres[0].text.replace(',', '')
-#content > div.article > div.mv_info_area > div.mv_info > dl > dd:nth-child(2) > p
-
-temp_genre_list = temp_genres.split()
-# print(temp_genre_list)
-
-genre = []
-for key, val in genre_dict.items():
-    for temp_genre in temp_genre_list:
-        if temp_genre == val:
-            genre.append(key)
-            break
-print(genre)
-
-
-# audience = 0
-# audience_str = ''
-# for a in audiences:
-#     for temp in a.text:
-#         if temp == '명':
-#             break
-#         if temp != ',':
-#             audience_str += temp
-# audience = int(audience_str)
-# print(audience)
 
 # # 줄거리
 # movie_info = []
@@ -51,3 +23,39 @@ print(genre)
 #         temp = temp.replace('  ', ' ')
 #         movie_info.append(temp)
 # print(movie_info)
+
+
+audiences = soup.select('div.step9_cont > p.count')
+
+# audience = 0
+# audience_str = ''
+# for a in audiences:
+#     for temp in a.text:
+#         if temp == '명':
+#             break
+#         if temp != ',':
+#             audience_str += temp
+# audience = int(audience_str)
+# print(audience)
+
+
+genres = soup.select('dl.info_spec > dd:nth-child(2) > p')
+# temp_genres = genres[0].text.replace(',', '')
+# #content > div.article > div.mv_info_area > div.mv_info > dl > dd:nth-child(2) > p
+
+# temp_genre_list = temp_genres.split()
+# print(temp_genre_list)
+
+# genre = []
+# for key, val in genre_dict.items():
+#     for temp_genre in temp_genre_list:
+#         if temp_genre == val:
+#             genre.append(key)
+#             break
+# print(genre)
+
+directors = soup.select('dl > dd:nth-child(4) > p')
+#content > div.article > div.mv_info_area > div.mv_info > dl > dd:nth-child(4) > p
+temp_directors = directors[0].text.replace(',', ' ')
+director = temp_directors.split('  ')
+print(director)
